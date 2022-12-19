@@ -12,7 +12,6 @@ export class BookService {
 
   async findMany() {
     return this.books
-
   }
 
   async findById(id) {
@@ -23,15 +22,13 @@ export class BookService {
     return null
   }
 
-  async findbyAuthor(authorId) {
+  async findByAuthorId(authorId) {
     return this.books.filter((book) => book.author === authorId)
-
   }
 
   async createBook(book: CreateBookInput) {
     this.books = [book, ...this.books];
     return book
-
   }
 
 }

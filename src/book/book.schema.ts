@@ -28,7 +28,7 @@ export class CreateBookInput {
   @Field()
   isbn: string
 
-  @Field()
+  @Field(() => Int)
   author: number
 }
 
