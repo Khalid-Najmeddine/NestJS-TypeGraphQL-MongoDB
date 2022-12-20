@@ -1,34 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
+import {InjectModel} from "@nestjs/mongoose"
+import {Model} from "mongoose"
 import books from "../data/books";
-import {Book, CreateBookInput} from "./book.schema"
+import {Book, CreateBookInput, BookDocument} from "./book.schema"
 
 @Injectable()
 export class BookService {
 
   books: Partial<Book>[]
-  constructor() {
+  constructor(
+    @InjectModel(Book.name) private bookModel: Model<BookDocument>,
+  ) {
     this.books = books
   }
 
   async findMany() {
-    return this.books
+    return this.bookModel.find().lean()
   }
 
   async findById(id) {
-    const books = this.books.filter((book) => book.id === id)
-    if(books.length) {
-      return books[0]
-    }
-    return null
+    return this.bookModel.findById(id).lean()
   }
 
   async findByAuthorId(authorId) {
-    return this.books.filter((book) => book.author === authorId)
+    return this.bookModel.find({author: authorId})
   }
 
   async createBook(book: CreateBookInput) {
-    this.books = [book, ...this.books];
-    return book
+    return this.bookModel.create(book)
   }
-
 }
