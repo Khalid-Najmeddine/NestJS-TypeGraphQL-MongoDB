@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import {ConfigModule} from "@nestjs/config"
 import {ApolloDriver, ApolloDriverConfig} from "@nestjs/apollo"
 import {GraphQLModule} from "@nestjs/graphql";
 import { MongooseModule} from "@nestjs/mongoose"
@@ -12,8 +11,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot("mongodb+srv://knajm574:12345@cluster0.oetx4qb.mongodb.net/?retryWrites=true&w=majority"),
+    MongooseModule.forRoot(`mongodb+srv://knajm574:T8csPLnJ5zK04McO@cluster0.oetx4qb.mongodb.net/test?retryWrites=true&w=majority`),
     GraphQLModule.forRoot<ApolloDriverConfig>({driver: ApolloDriver, autoSchemaFile: "schema.gql"}),
     AuthorModule, 
     BookModule, UserModule
