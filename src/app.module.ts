@@ -7,11 +7,14 @@ import { AppService } from './app.service';
 import {AuthorModule} from "./author/author.module"
 import { BookModule } from './book/book.module';
 import { UserModule } from './user/user.module';
+import * as dotenv from "dotenv"
 
+dotenv.config()
+const mongoURI = process.env.MONGO_URI
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`mongodb+srv://knajm574:T8csPLnJ5zK04McO@cluster0.oetx4qb.mongodb.net/test?retryWrites=true&w=majority`),
+    MongooseModule.forRoot(mongoURI),
     GraphQLModule.forRoot<ApolloDriverConfig>({driver: ApolloDriver, autoSchemaFile: "schema.gql"}),
     AuthorModule, 
     BookModule, UserModule
