@@ -10,11 +10,11 @@ import { UserModule } from './user/user.module';
 import * as dotenv from "dotenv"
 
 dotenv.config()
-const mongoURI = process.env.MONGO_URI
+const mongoDBConnectionString = process.env.MONGODB_CONNECTION_STRING
 
 @Module({
   imports: [
-    MongooseModule.forRoot(mongoURI),
+    MongooseModule.forRoot(mongoDBConnectionString),
     GraphQLModule.forRoot<ApolloDriverConfig>({driver: ApolloDriver, autoSchemaFile: "schema.gql"}),
     AuthorModule, 
     BookModule, UserModule
