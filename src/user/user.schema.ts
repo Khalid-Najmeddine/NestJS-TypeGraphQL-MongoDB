@@ -37,7 +37,7 @@ export const UserSchema = SchemaFactory.createForClass(User)
 
 UserSchema.index({email: 1})
 
-UserSchema.pre("save", async function (next: mongoose.HookNextFunction) {
+UserSchema.pre("save", async function (next) {
   let user = this as UserDocument
 
   //only hash the password if it has been modified (or is new)
@@ -92,4 +92,3 @@ export class LoginInput {
   @Field()
   password: string
 }
-
