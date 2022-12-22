@@ -6,6 +6,7 @@ import {User, UserDocument, CreateUserInput} from "./user.schema"
 
 @Injectable()
 export class UserService {
+  
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async createUser(input: CreateUserInput) {
