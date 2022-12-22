@@ -15,7 +15,13 @@ const mongoDBConnectionString = process.env.MONGODB_CONNECTION_STRING
 @Module({
   imports: [
     MongooseModule.forRoot(mongoDBConnectionString),
-    GraphQLModule.forRoot<ApolloDriverConfig>({driver: ApolloDriver, autoSchemaFile: "schema.gql"}),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver, 
+      autoSchemaFile: "schema.gql",
+      context: ({req, res}) => {
+        return {req, res}
+      }
+    }),
     AuthorModule, 
     BookModule, UserModule
   ],

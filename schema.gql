@@ -25,16 +25,23 @@ type Query {
   authors: [Author!]!
   books: [Book!]!
   book(input: FindBookInput!): Book!
+  login(input: LoginInput!): User!
 }
 
 input FindBookInput {
   _id: String!
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createAuthor(input: CreateAuthorInput!): Author!
   createBook(input: CreateBookInput!): Book!
   registerUser(input: CreateUserInput!): User!
+  confirmUser(input: ConfirmUserInput!): User!
 }
 
 input CreateAuthorInput {
@@ -51,4 +58,9 @@ input CreateUserInput {
   name: String!
   email: String!
   password: String!
+}
+
+input ConfirmUserInput {
+  email: String!
+  confirmToken: String!
 }
