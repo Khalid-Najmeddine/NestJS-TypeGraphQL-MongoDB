@@ -26,6 +26,8 @@ type Query {
   books: [Book!]!
   book(input: FindBookInput!): Book!
   login(input: LoginInput!): User!
+  me: User
+  logout: User
 }
 
 input FindBookInput {

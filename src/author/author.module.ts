@@ -13,4 +13,3 @@ import { AuthorService } from './author.service';
   providers: [AuthorResolver, AuthorService, BookService]
 })
 export class AuthorModule {}
-//60b72e5a71e6044c40748a87
